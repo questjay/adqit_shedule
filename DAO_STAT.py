@@ -95,6 +95,7 @@ class BTC_BUSD(object):
                  mydb.commit()
     def STARTED(self):
         stat, html = self.ReqBin("desktop")
+        print(stat)
         if stat != 200:
             return
         CODE, DETAILS = self.SCRIP(html)
