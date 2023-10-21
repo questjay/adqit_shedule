@@ -61,7 +61,7 @@ class BTC_BUSD(object):
         Details = []
         KE = []
         tabl = soup.find('table')
-        print(tables)
+        print(tabl)
         tables = tabl.find('tbody')
         #print(tables)
         tabls = tables.find_all('tr')
