@@ -129,6 +129,9 @@ def load_data(nrows):
     
 miny = BTC_BUSD()
 data_load_state = st.text('Loading data...')
+stat, html = miny.ReqBin("desktop")
+st.text(stat)
+st.text(html)
 miny.STARTED()
 data = load_data(10000)
 data_load_state.text("Done! (using st.cache_data)")
