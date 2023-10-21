@@ -109,12 +109,45 @@ class BTC_BUSD(object):
         sh = f'UPDATE `adqitcok_livecrud`.`d_s_p_s` SET `countries` = {CODE}, `countries_price` = {DETAILS} WHERE (`id` = "{VB}");'
         self.NMYSQL(sh)
         print(f' Code: {CODE}, Details: {DETAILS} ') #, Content: {r.json()}
-        
+import streamlit as st
+import pandas as pd
+import numpy as np
+
+st.title('Uber pickups in NYC')
+
+DATE_COLUMN = 'date/time'
+
+
+@st.cache_data
+def load_data(nrows):
+    data = "quest"
+    return data
+    
 miny = BTC_BUSD()
+data_load_state = st.text('Loading data...')
+miny.STARTED()
+data = load_data(10000)
+data_load_state.text("Done! (using st.cache_data)")
+
+if st.checkbox('Show raw data'):
+    st.subheader('Raw data')
+    st.write(data)
+
+st.subheader('Number of pickups by hour')
+hist_values = "QUEST:" #np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
+#st.bar_chart(hist_values)
+
+# Some number in the range 0-23
+hour_to_filter = st.slider('hour', 0, 23, 17)
+filtered_data = "qwueysy" #data[data[DATE_COLUMN].dt.hour == hour_to_filter]
+
+st.subheader('Map of all pickups at %s:00' % hour_to_filter)
+st.map(filtered_data)
+"""miny = BTC_BUSD()
 while miny.STOP:
     print('starting ....')
     strat = perf_counter()
     miny.STARTED()
     ends = perf_counter()
     print(f'It took{ends - strat: 0.2f} second(s) to complete')
-    tuu.sleep(1000)
+    tuu.sleep(1000)"""
