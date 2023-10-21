@@ -60,12 +60,12 @@ class BTC_BUSD(object):
         KE = dict()
         Details = []
         KE = []
-        tables = soup.find('table')
+        tabl = soup.find('table')
         print(tables)
-        tables = tables.find('tbody')
+        tables = tabl.find('tbody')
         #print(tables)
-        tables = tables.find_all('tr')
-        for item in tables:
+        tabls = tables.find_all('tr')
+        for item in tabls:
             text = item.find_all("td")[0].text
             result = text.index('(')
             #print(result)
