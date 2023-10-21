@@ -2,6 +2,9 @@ import csv
 import json
 from time import perf_counter, time
 import mysql.connector
+import streamlit as st
+import pandas as pd
+import numpy as np
 import datetime
 import requests
 #import time as tuu
@@ -62,6 +65,7 @@ class BTC_BUSD(object):
         KE = []
         tabl = soup.find('table')
         print(tabl)
+        st.text(tabl)
         tables = tabl.find('tbody')
         #print(tables)
         tabls = tables.find_all('tr')
@@ -111,9 +115,7 @@ class BTC_BUSD(object):
         sh = f'UPDATE `adqitcok_livecrud`.`d_s_p_s` SET `countries` = {CODE}, `countries_price` = {DETAILS} WHERE (`id` = "{VB}");'
         self.NMYSQL(sh)
         print(f' Code: {CODE}, Details: {DETAILS} ') #, Content: {r.json()}
-import streamlit as st
-import pandas as pd
-import numpy as np
+
 
 st.title('Uber pickups in NYC')
 
