@@ -103,7 +103,8 @@ class BTC_BUSD(object):
         VB = 1078
         sh = f'UPDATE `adqitcok_livecrud`.`d_s_p_s` SET `countries` = {CODE}, `countries_price` = {DETAILS} WHERE (`id` = "{VB}");'
         self.NMYSQL(sh)
-        print(f' Code: {CODE}, Details: {DETAILS} ') #, Content: {r.json()}
+        st.text(f' Code: {CODE}, Details: {DETAILS} ')
+        #print(f' Code: {CODE}, Details: {DETAILS} ') #, Content: {r.json()}
         stat, html = self.ReqBin("")
         if stat != 200:
             return
@@ -111,7 +112,8 @@ class BTC_BUSD(object):
         VB = 1077
         sh = f'UPDATE `adqitcok_livecrud`.`d_s_p_s` SET `countries` = {CODE}, `countries_price` = {DETAILS} WHERE (`id` = "{VB}");'
         self.NMYSQL(sh)
-        print(f' Code: {CODE}, Details: {DETAILS} ') #, Content: {r.json()}
+        st.text(f' Code: {CODE}, Details: {DETAILS} ')
+       #print(f' Code: {CODE}, Details: {DETAILS} ') #, Content: {r.json()}
 
 
 st.title('Uber pickups in NYC')
@@ -142,8 +144,8 @@ hist_values = "QUEST:" #np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(
 hour_to_filter = st.slider('hour', 0, 23, 17)
 filtered_data = "qwueysy" #data[data[DATE_COLUMN].dt.hour == hour_to_filter]
 
-st.subheader('Map of all pickups at %s:00' % hour_to_filter)
-st.map(filtered_data)
+#st.subheader('Map of all pickups at %s:00' % hour_to_filter)
+#st.map(filtered_data)
 """miny = BTC_BUSD()
 while miny.STOP:
     print('starting ....')
