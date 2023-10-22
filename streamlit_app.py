@@ -9,7 +9,6 @@ import datetime
 import requests
 #import time as tuu
 from bs4 import BeautifulSoup
-
 class BTC_BUSD(object):
     def __init__(self):
        self.USER ="Quest"
@@ -32,7 +31,7 @@ class BTC_BUSD(object):
          data = self.GetW(D)
          s = requests.Session()
          s.headers.update({'authority': 'dao.ad','Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
-          'Accept-Encoding':'gzip, deflate, br','Accept-Language':'en-US,en;q=0.9','Cache-Control':'max-age=0',
+          'Accept-Language':'en-US,en;q=0.9','Cache-Control':'max-age=0',
               'Content-Type':'application/x-www-form-urlencoded',
             'Cookie':'_gcl_au=1.1.209188278.1694425105; _fbp=fb.1.1694425105604.1640370592; _ym_uid=1694425108477143737; _ym_d=1694425108; modal__cookies-accepted=true; _dao_fir_idnt=b36bb3272009d97418a93e93bfd3b57d4ef0c0e051be431dc0d05a5340896b80a%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_dao_fir_idnt%22%3Bi%3A1%3Bs%3A20%3A%22%5B33781%2Cnull%2C2592000%5D%22%3B%7D; _ga=GA1.1.825532005.1694425105; _tt_enable_cookie=1; _ttp=71AOBjTRoRTY8ypHDxFdMI6X25I; modal-subscribe=yes; PHPSESSID=74u1h1s1t2mjs2qf9bcavrb7gg; _csrf=4493728d0672e7491005614c8f687d5dfa531806ef2923c996ccf8c47883543da%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%223Tsj6jHTsS8TOVX9p_fYSmbUagp14fub%22%3B%7D; _ga_KYQ8ZVNT3E=GS1.1.1697848229.84.1.1697850989.60.0.0',
            'Origin':'https://dao.ad',
@@ -58,21 +57,20 @@ class BTC_BUSD(object):
         #url = "http://olympus.realpython.org/profiles/dionysus"
         #page = urlopen(url)
         #html = ""
-        soup = BeautifulSoup(html, "html.parser")
+        soup = BeautifulSoup(html, "lxml")
         Details = dict()
         KE = dict()
         Details = []
         KE = []
         tabl = soup.find('table')
-        print(tabl)
-        st.text(tabl)
         tables = tabl.find('tbody')
         #print(tables)
-        tabls = tables.find_all('tr')
-        for item in tabls:
+        tables = tables.find_all('tr')
+        for item in tables:
             text = item.find_all("td")[0].text
             result = text.index('(')
             #print(result)
+            
             #print()
             key = (item.find_all("td")[2].text).replace("$","")
             value = ((text[result:]).replace("(","")).replace(")","")
@@ -99,7 +97,6 @@ class BTC_BUSD(object):
                  mydb.commit()
     def STARTED(self):
         stat, html = self.ReqBin("desktop")
-        print(stat)
         if stat != 200:
             return
         CODE, DETAILS = self.SCRIP(html)
@@ -129,9 +126,6 @@ def load_data(nrows):
     
 miny = BTC_BUSD()
 data_load_state = st.text('Loading data...')
-stat, html = miny.ReqBin("desktop")
-st.text(stat)
-st.text(html)
 miny.STARTED()
 data = load_data(10000)
 data_load_state.text("Done! (using st.cache_data)")
